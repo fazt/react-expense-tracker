@@ -17,8 +17,8 @@ export function ExpenseChart() {
     .filter((transaction) => transaction.amount < 0)
     .reduce((acc, transaction) => (acc += transaction.amount) * -1, 0);
 
-  const incomes = Math.abs((totalIncomes / total) * 100);
-  const expenses = Math.abs((totalExpenses / total) * 100);
+  const incomes = Math.floor((totalIncomes / total) * 100); 
+  const expenses = Math.floor((totalExpenses / total) * 100);
 
   return (
     <VictoryPie
