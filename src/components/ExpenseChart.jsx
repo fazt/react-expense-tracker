@@ -4,28 +4,26 @@ import { useGlobalState } from "../context/GlobalState";
 export function ExpenseChart() {
   const { transactions } = useGlobalState();
 
-  const total = transactions.reduce(
-    (acc, transaction) => (acc += Math.abs(transaction.amount)),
-    0
-  );
-
   const totalIncomes = transactions
     .filter((transaction) => transaction.amount > 0)
-    .reduce((acc, transaction) => (acc += transaction.amount), 0);
+    .reduce((acc, transaction) => (acc += transaction.amount), 0)
+    .toFixed(2);
 
-  const totalExpenses = transactions
-    .filter((transaction) => transaction.amount < 0)
-    .reduce((acc, transaction) => (acc += transaction.amount) * -1, 0);
+  const totalExpenses =
+    transactions
+      .filter((transaction) => transaction.amount < 0)
+      .reduce((acc, transaction) => (acc += transaction.amount), 0)
+      .toFixed(2) * -1;
 
-  const incomes = Math.floor((totalIncomes / total) * 100); 
-  const expenses = Math.floor((totalExpenses / total) * 100);
+  const expensesPercentage = Math.round((totalExpenses / totalIncomes) * 100)
+  const incomesPercentage = 100 - expensesPercentage;
 
   return (
     <VictoryPie
       colorScale={["#e74c3c", "#2ecc71"]}
       data={[
-        { x: "Expenses", y: expenses },
-        { x: "Incomes", y: incomes },
+        { x: "Expenses", y: expensesPercentage },
+        { x: "Incomes", y: incomesPercentage },
       ]}
       animate={{
         duration: 2000,

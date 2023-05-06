@@ -1,4 +1,5 @@
 import { useGlobalState } from "../../context/GlobalState";
+import {BiTrash} from 'react-icons/bi'
 
 export function TransactionItem({ transaction: { id, description, amount } }) {
   const { deleteTransaction } = useGlobalState();
@@ -21,7 +22,7 @@ export function TransactionItem({ transaction: { id, description, amount } }) {
           onClick={() => deleteTransaction(id)}
           className="font-bold text-white rounded-lg ml-2"
         >
-          x
+          <BiTrash />
         </button>
       </div>
     </li>
