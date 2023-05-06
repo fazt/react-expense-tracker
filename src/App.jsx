@@ -9,11 +9,11 @@ import { ExpenseChart } from "./components/ExpenseChart";
 function App() {
   return (
     <GlobalProvider>
-      <div className="bg-zinc-900 text-white h-screen flex justify-center items-center">
-        <div className="container mx-auto flex justify-center items-center">
-          <div className="bg-zinc-800 p-10 rounded-lg">
+      <div className="bg-neutral-950 text-white h-screen flex justify-center items-center">
+        <div className="w-2/5 flex justify-center items-center">
+          <div className="bg-neutral-800 p-10 rounded-md w-full">
             <Header />
-            <div className="flex flex-col md:flex-row justify-between">
+            <div className="flex flex-col md:flex-row justify-between gap-4">
               <div className="flex-1">
                 <IncomeExpenses />
                 <Balance />
